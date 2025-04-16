@@ -1,0 +1,63 @@
+
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-lavender">Your Cart</h1>
+    <% if (user.cart.length > 0) { %>
+        <ul class="list-group">
+            <% for (let item of user.cart) { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center shadow-lg rounded-3 mb-3">
+                    <div>
+                        <h5 class="mb-1 text-lavender"><%= item.name %></h5>
+                        <p class="mb-0 text-muted">Price: $<%= item.price %></p>
+                    </div>
+                    
+                </li>
+            <% } %>
+        </ul>
+        <div class="mt-4 text-end">
+            <h4 class="text-lavender">Total: $<%= user.cart.reduce((total, item) => total + item.price, 0) %></h4>
+            <button class="btn btn-success btn-lg text-white" id="checkout-button">Checkout</button>
+        </div>
+    <% } else { %>
+        <div class="alert alert-info" role="alert">
+            Your cart is empty. Start shopping now!
+        </div>
+    <% } %>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe("<%= stripekey %>"); // Using passed key
+
+    document.getElementById("checkout-button").addEventListener("click", async () => {
+        const response = await fetch("/create-checkout-session", { method: "POST" });
+        const session = await response.json();
+        stripe.redirectToCheckout({ sessionId: session.id });
+    });
+</script>  
+
+<!-- <script>
+  
+
+    async function removeFromCart(productId) {
+        try {
+            const response = await fetch(/user/${productId}/remove, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert('Failed to remove item from cart.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script> 
+ -->

@@ -1,0 +1,160 @@
+<% layout('layouts/boilerplate') -%>
+<style>
+  /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif; /* Stylish font */
+    font-weight: 600; /* Make the font bolder */
+    background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient background */
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center; /* Align items to the center */
+    justify-content: center; /* Center horizontally */
+    margin: 0;
+    padding-top: 100px; /* Add top padding for navbar spacing */
+}
+
+/* Card Style */
+.row {
+    width: 100%; /* Full width of the container */
+    max-width: 1000px; /* Limit maximum width */
+    display: flex;
+    justify-content: center; /* Center the row */
+    align-items: center;
+}
+
+.col-md-6 {
+    background: rgba(255, 255, 255, 0.1); /* White background with transparency */
+    padding: 30px 50px; /* Reduced padding for a smaller card */
+    border-radius: 20px; /* Rounded corners for card */
+    box-shadow: 0px 20px 60px rgba(255, 255, 255, 0.4); /* Shadow effect */
+    backdrop-filter: blur(20px); /* Blur effect behind the card */
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+    width: 900%; /* Full width of the column */
+    max-width: 700px; /* Limit the maximum card width */
+}
+
+.col-md-6:hover {
+    transform: translateY(-10px) scale(1.05); /* Slight scaling and translate on hover */
+    box-shadow: 0px 20px 60px rgba(255, 255, 255, 0.7); /* More prominent shadow */
+    background: rgba(255, 255, 255, 0.2); /* Light background color change on hover */
+}
+
+/* Header */
+h1 {
+    font-size: 28px; /* Reduced font size */
+    font-weight: 700; /* Bold header */
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px; /* Reduced margin */
+}
+
+/* Input Fields */
+.form-control {
+    background: rgba(255, 255, 255, 0.2); /* Transparent white background */
+    border: none;
+    border-radius: 20px; /* Rounded corners for inputs */
+    padding: 12px; /* Reduced padding */
+    color: #ffffff;
+    margin-bottom: 20px; /* Reduced space between inputs */
+    transition: all 0.3s ease-in-out;
+    font-size: 16px; /* Smaller font size */
+    font-weight: 600; /* Bold text for input */
+}
+
+.form-control:focus {
+    outline: none;
+    background: #00d9ff; /* Focused input color */
+    color: #ffffff;
+}
+
+/* Radio Buttons */
+.form-check-input {
+    margin-top: 0; /* Align radio buttons properly */
+}
+
+/* Submit Button */
+.btn {
+    font-size: 16px; /* Smaller button text size */
+    padding: 10px 20px; /* Adjusted padding */
+    border-radius: 40px; /* More rounded button */
+    background: #00d9ff; /* Light blue background */
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background: #ffffff;
+    color: #00d9ff;
+    transform: scale(1.1); /* Slight scaling effect */
+}
+
+/* Form Label */
+.form-label {
+    font-weight: 600; /* Bold text for labels */
+    color: #ffffff;
+    margin-bottom: 7px; /* Reduced margin below labels */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Flash messages (optional) */
+.flash {
+    background: rgba(255, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+
+</style>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <%- include('../partials/flash')  %> 
+        <h1 class="display-6">Sign Up</h1>
+        <form action="/register" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" type="text" name="username" id="username" placeholder="Username">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="mb-3">
+                <p class="mb-2">Want to register as ? </p>
+                <div class="mx-2">
+                    <label class="form-label" for="seller">Seller</label>
+                    <input class="form-check-input mt-0" type="radio" name="role" value="seller" id="seller" aria-label="Radio button for following text input">
+                </div>
+                <div class="mx-2">
+                    <label class="form-label" for="buyer">Buyer</label>
+                    <input class="form-check-input mt-0" type="radio" name="role" value="buyer"  id="buyer" aria-label="Radio button for following text input">
+                </div>
+               
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-success btn-small">SignUp</button>
+        </form>
+    </div>
+</div>

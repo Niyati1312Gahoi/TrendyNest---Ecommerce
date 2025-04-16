@@ -1,0 +1,199 @@
+<% layout('layouts/boilerplate') -%>
+
+<style>
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+
+
+
+
+
+/* Card Style */
+.col-md-6 {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px 40px;
+    border-radius: 20px;
+    box-shadow: 0px 15px 40px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.4s ease-in-out;
+    width: 200%;
+    max-width: 900px;
+    margin-top: 120px; /* Ensures space from the navbar */
+    
+}
+
+.col-md-6:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 20px 50px rgba(255, 255, 255, 0.5);
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: left;
+    display: block;
+}
+
+/* Input Fields */
+.form-control {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.form-control:focus {
+    outline: none;
+    background: #00d9ff;
+    color: #ffffff;
+}
+
+/* Price Input Field */
+.price-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.currency-symbol {
+    background: #2A5298;
+    color: white;
+    padding: 12px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px 0 0 10px;
+}
+
+.price-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+}
+
+.price-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Submit Button */
+.btn {
+    font-size: 16px;
+    padding: 10px 18px;
+    border-radius: 40px;
+    background: #00d9ff;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+.btn:hover {
+    background: #ffffff;
+    color: #00d9ff;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .col-md-6 {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .currency-symbol {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .price-input {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+
+
+</style>
+
+
+<div class="row">
+   
+    <div class="col-md-6 mx-auto">
+        <form action="/products" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="name">Name : </label>
+                <input class="form-control" type="text" name="name" id="name" placeholder="Product Name" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="img" class="form-label">Image URL</label>
+                <input class="form-control" type="text" name="img" id="img" placeholder="Product Image URL" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1" aria-setsize="10px">&#8360;</span>
+                    <input type="text" name="price" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                </div>  
+            </div>
+        
+            <div class="mb-3">
+                <label class="form-label" for="desc">Description</label>
+                <textarea class="form-control" name="desc" id="desc" rows="5" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button type="submit" class="btn btn-sm btn-success">Add</button>
+        </form>
+    </div>
+</div>
+<!-- JavaScript for Slideshow -->
+<script>
+    const images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"]; // Add your image paths here
+    let index = 0;
+    const imgElement = document.getElementById("slideshow-image");
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        imgElement.style.opacity = "0"; // Fade out
+        setTimeout(() => {
+            imgElement.src = images[index];
+            imgElement.style.opacity = "1"; // Fade in
+        }, 500);
+    }, 3000); // Change image every 3 seconds
+</script>
