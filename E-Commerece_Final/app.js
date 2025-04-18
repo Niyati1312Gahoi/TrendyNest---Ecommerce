@@ -11,7 +11,7 @@ const LocalStrategy =  require('passport-local');
 const User = require('./models/user');
 const seedDB = require('./seed')
 const Stripe=require('stripe');
-const stripe = Stripe('sk_test_51QnoP5PJGxUIqjvW2B8ocLv1Jg17w3x8mhfMZq88lDSzCmS0qJQOpgsPTL1ClsvgdB0tEVXDPYTRCPRBwfAqaOmD00IEm6s2Fh');
+
 
 
 mongoose.set('strictQuery', true);
